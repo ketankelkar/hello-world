@@ -11,7 +11,6 @@ Editing a branch.
 > Helpful advice for doing things better or more easily.
 
 > [!IMPORTANT]
-
 > Key information users need to know to achieve their goal.
 >
 > Key information users need to know to achieve their goal.

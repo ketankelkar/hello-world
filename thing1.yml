@@ -1,0 +1,41 @@
+---
+- name: thing1
+  hosts: ec33018
+  vars:
+    PYZ: /allpython/3.13/usr/lpp/IBM/cyp/v3r13/pyz/
+
+  # environment: "{{ environment_vars }}"
+  environment:
+    _BPXK_AUTOCVT: "ON"
+    _CEE_RUNOPTS: "FILETAG(AUTOCVT,AUTOTAG) POSIX(ON)"
+    _TAG_REDIR_ERR: "txt"
+    _TAG_REDIR_IN: "txt"
+    _TAG_REDIR_OUT: "txt"
+    LANG: "C"
+    PYTHONSTDINENCODING: "cp1047"
+  
+  gather_facts: false
+  
+  tasks:
+    - name: create a file
+      raw: echo 'HI' > /tmp/test.txt
+      no_log: True
+
+    - name: fetch file
+      fetch:
+        src: /tmp/test.txt
+        dest: /tmp/
+        flat: True
+
+    - name: print ansible version
+      raw: ansible --version
+      delegate_to: localhost
+
+    - name: hexdump ebcdic file on localhost off zOS
+      command: od -x /tmp/test.txt
+      delegate_to: localhost
+
+    - name: cat ebcdic file on localhost off zOS
+      command: cat /tmp/test.txt
+      delegate_to: localhost
+      ignore_errors: True

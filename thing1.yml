@@ -19,7 +19,7 @@
   tasks:
     - name: create a file
       raw: echo 'HI' > /tmp/test.txt
-      no_log: True
+      # no_log: True
 
     - name: fetch file
       fetch:
